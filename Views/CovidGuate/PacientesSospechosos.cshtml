@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ProyectoFinal_EstDatos.Clases.Paciente>
+@using ProyectoFinal_EstDatos.Clases;
+@{
+    ViewData["Title"] = "PacientesSospechosos";
+}
+
+<h1>Pacientes Sospechosos</h1>
+<hr />
+<h3>@ViewBag.NombreHospital</h3>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Municipio)
+            </th>
+            <th style="width:auto">
+                @Html.DisplayNameFor(model => model.Sintomas)
+            </th>
+            <th style="width:auto">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Paciente item in ViewBag.Sospechosos) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DPI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Municipio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sintomas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>           
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a class="btn btn-outline-info" asp-action="Index">Regresar</a>
+</div>
+<p>
+
+</p>
+<div>
+    <a class="btn btn-outline-warning" asp-action="Index">Realizar Una Prueba</a>
+</div>
