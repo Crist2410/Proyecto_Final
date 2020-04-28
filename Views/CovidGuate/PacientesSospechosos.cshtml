@@ -39,40 +39,50 @@
         </tr>
     </thead>
     <tbody>
-@foreach (Paciente item in ViewBag.Sospechosos) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DPI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Departamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Municipio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sintomas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>           
-        </tr>
-}
+        @foreach (Paciente item in ViewBag.Sospechosos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DPI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Municipio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sintomas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-<div>
-    <a class="btn btn-outline-info" asp-action="Index">Regresar</a>
-</div>
+@if (ViewBag.Regresar)
+{
+    <div>
+        <a class="btn btn-outline-info" asp-action="Index">Regresar</a>
+    </div>
+}
+else
+{
+    <div>
+        <a class="btn btn-outline-info" asp-action="MostrarHospital">Regresar</a>
+    </div>
+}
 <p>
 
 </p>

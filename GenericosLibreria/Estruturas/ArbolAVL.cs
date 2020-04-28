@@ -15,7 +15,7 @@ namespace LibreriaGenerica.Estruturas
         }
         public void Delete(T Valor, Delegate Delegado)
         {
-            Borrar(Valor, Delegado, Raiz);
+            Raiz = Borrar(Valor, Delegado, Raiz);
         }
         public void Edit(T Valor, Delegate Delegado)
         {

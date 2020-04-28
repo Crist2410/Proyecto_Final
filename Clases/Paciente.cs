@@ -20,6 +20,7 @@ namespace ProyectoFinal_EstDatos.Clases
         public bool Prueba { get; set; }
         public int Prioridad { get; set; }
         public string Hospital { get; set; }
+        public int Posicion { get; set; }
         #endregion
         #region Metodos
         public bool ExamenCovid19()

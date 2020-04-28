@@ -42,11 +42,12 @@ namespace ProyectoFinal_EstDatos.Controllers
                 Covid19.AVLPacientes.Add(AuxPaciente, AuxPaciente.BuscarDPI);
                 ViewBag.NombreHospital = HospitalAux.Nombre;
                 ViewBag.Sospechosos = HospitalAux.Sospechosos.Mostrar();
+                ViewBag.Regresar = true;
                 return View("PacientesSospechosos");
             }
             else
             {
-                ViewBag.Error = "Paciente Repetido";
+                ViewBag.Error = "¡Paciente Repetido!";
                 return View("IngresarPaciente", AuxPaciente);
             }
         }
@@ -54,11 +55,19 @@ namespace ProyectoFinal_EstDatos.Controllers
         {
             Paciente AuxPaciente = new Paciente();
             AuxPaciente = HospitalActual.Sospechosos.Delete(AuxPaciente.BuscarPrioridad);
-           
             if (AuxPaciente.ExamenCovid19())
             {
-                //Parte de agrega a Camas 
-                ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19";
+                int HashPosicion = HospitalActual.Camas.ObtenerValorHash(AuxPaciente.Nombre + AuxPaciente.Apellido);
+                if (HospitalActual.Camas.ChequeoIngresar(HashPosicion))
+                {
+                    HospitalActual.Camas.Añadir(AuxPaciente, AuxPaciente.Nombre + AuxPaciente.Apellido);
+                    ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19,\n Fue Trasladado a Una Cama del Hospital";
+                }
+                else
+                {
+                    HospitalActual.EsperaConfrimados.Add(AuxPaciente, AuxPaciente.BuscarPrioridad);
+                    ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19,\n Fue Trasladado a Lista de Espera Mienstras se Habilita una Cama";
+                }
             }
             else
             {
@@ -110,6 +119,11 @@ namespace ProyectoFinal_EstDatos.Controllers
             HospitalActual = new Hospital();
             return View();
         }
+        public ActionResult MostrarHospital()
+        {
+            ViewBag.NombreHospital = HospitalActual.Nombre;
+            return View();
+        }
         public ActionResult SeleccionarHospital(int id)
         {
             if (id == 1)
@@ -129,12 +143,27 @@ namespace ProyectoFinal_EstDatos.Controllers
         {
             ViewBag.NombreHospital = HospitalActual.Nombre;
             ViewBag.Sospechosos = HospitalActual.Sospechosos.Mostrar();
+            ViewBag.Regresar = false;
             return View();
         }
         public ActionResult ColaConfirmados()
         {
             ViewBag.NombreHospital = HospitalActual.Nombre;
             ViewBag.ColaConfirmados = HospitalActual.EsperaConfrimados.Mostrar();
+            return View();
+        }
+        public ActionResult CamasHospital()
+        {
+            ViewBag.NombreHospital = HospitalActual.Nombre;
+            Paciente[] ListaPacientes = HospitalActual.Camas.Mostrar();
+            for (int i = 0; i < 10; i++)
+                if (ListaPacientes[i] == null)
+                {
+                    ListaPacientes[i] = new Paciente() { Posicion = (i + 1), Nombre = "Cama", Apellido = "Vacia" };
+                }
+                else
+                    ListaPacientes[i].Posicion = (i + 1);
+            ViewBag.Confirmados = ListaPacientes;
             return View();
         }
 

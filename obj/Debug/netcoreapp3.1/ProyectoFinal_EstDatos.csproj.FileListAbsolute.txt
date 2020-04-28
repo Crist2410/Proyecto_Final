@@ -114,3 +114,4 @@ C:\Users\Crist\Desktop\ProyectoFinal_EstDatos\obj\Debug\netcoreapp3.1\Razor\View
 C:\Users\Crist\Desktop\ProyectoFinal_EstDatos\obj\Debug\netcoreapp3.1\Razor\Views\CovidGuate\ColaConfirmados.cshtml.g.cs
 C:\Users\Crist\Desktop\ProyectoFinal_EstDatos\obj\Debug\netcoreapp3.1\Razor\Views\CovidGuate\RealizarPrueba.cshtml.g.cs
 C:\Users\Crist\Desktop\ProyectoFinal_EstDatos\obj\Debug\netcoreapp3.1\Razor\Views\CovidGuate\BuscarPaciente.cshtml.g.cs
+C:\Users\Crist\Desktop\ProyectoFinal_EstDatos\obj\Debug\netcoreapp3.1\Razor\Views\CovidGuate\CamasHospital.cshtml.g.cs
