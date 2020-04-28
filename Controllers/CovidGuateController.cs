@@ -36,16 +36,78 @@ namespace ProyectoFinal_EstDatos.Controllers
             };
             AuxPaciente.CalcularPrioridad();
             //Asignacion a Hospital Y Mostar Cola Sospechosos
-            Hospital HospitalAux = Covid19.AsignarHospital(AuxPaciente);
-            ViewBag.NombreHospital = HospitalAux.Nombre;
-            ViewBag.Sospechosos = HospitalAux.Sospechosos.Mostrar();
-            return View("PacientesSospechosos");
+            if (!Covid19.AVLPacientes.ExiteValor(AuxPaciente, AuxPaciente.BuscarDPI))
+            {
+                Hospital HospitalAux = Covid19.AsignarHospital(AuxPaciente);
+                Covid19.AVLPacientes.Add(AuxPaciente, AuxPaciente.BuscarDPI);
+                ViewBag.NombreHospital = HospitalAux.Nombre;
+                ViewBag.Sospechosos = HospitalAux.Sospechosos.Mostrar();
+                return View("PacientesSospechosos");
+            }
+            else
+            {
+                ViewBag.Error = "Paciente Repetido";
+                return View("IngresarPaciente", AuxPaciente);
+            }
+        }
+        public ActionResult RealizarPrueba()
+        {
+            Paciente AuxPaciente = new Paciente();
+            AuxPaciente = HospitalActual.Sospechosos.Delete(AuxPaciente.BuscarPrioridad);
+           
+            if (AuxPaciente.ExamenCovid19())
+            {
+                //Parte de agrega a Camas 
+                ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19";
+            }
+            else
+            {
+                //Libre 
+                ViewBag.Descripcion = "EL PACIENTE NO TIENE EL VIRUS COVID-19";
+                 Covid19.AVLPacientes.Delete(AuxPaciente, AuxPaciente.BuscarDPI);
+            }
+            return View(AuxPaciente);
+        }
+        public ActionResult BuscarPaciente()
+        {
+            ViewBag.Pacientes = Covid19.AVLPacientes.Mostrar();
+            return View();
+        }
+        public ActionResult RealizarBusqueda(string Buscar, string Texto)
+        {
+            Paciente AuxPaciente = new Paciente();
+            if (Buscar == "N")
+            {
+                AuxPaciente.Nombre = Texto;
+                ViewBag.Pacientes = Covid19.AVLPacientes.Filtrar(AuxPaciente.ConteinsNombre, AuxPaciente);
+            }
+            else if (Buscar == "A")
+            {
+                AuxPaciente.Apellido = Texto;
+                ViewBag.Pacientes = Covid19.AVLPacientes.Filtrar(AuxPaciente.ConteinsApellido, AuxPaciente);
+            }
+            else
+            {
+                try
+                {
+                    AuxPaciente.DPI = Convert.ToInt64(Texto);
+                    ViewBag.Pacientes = Covid19.AVLPacientes.Get(AuxPaciente, AuxPaciente.BuscarDPI);
+                }
+                catch (Exception)
+                {
+                    List<Paciente> ListaError = new List<Paciente>();
+                    ViewBag.Pacientes = ListaError;
+                    return View("BuscarPaciente");
+                }
+            }
+            return View("BuscarPaciente");
         }
         #endregion
 
         #region Hospitales
         public ActionResult Hospitales()
         {
+            HospitalActual = new Hospital();
             return View();
         }
         public ActionResult SeleccionarHospital(int id)
@@ -72,7 +134,7 @@ namespace ProyectoFinal_EstDatos.Controllers
         public ActionResult ColaConfirmados()
         {
             ViewBag.NombreHospital = HospitalActual.Nombre;
-            ViewBag.Sospechosos = HospitalActual.Sospechosos.Mostrar();
+            ViewBag.ColaConfirmados = HospitalActual.EsperaConfrimados.Mostrar();
             return View();
         }
 

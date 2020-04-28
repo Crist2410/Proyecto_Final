@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ProyectoFinal_EstDatos.Clases.Paciente>
+@using ProyectoFinal_EstDatos.Clases;
+@{
+    ViewData["Title"] = "BuscarPaciente";
+}
+
+<h1>Buscar Paciente</h1>
+
+<nav class="navbar navbar-dark bg-dark">
+
+    <form class="form-inline my-2 my-lg-0" asp-controller="CovidGuate" asp-action="RealizarBusqueda">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-light active">
+                <input type="radio" name="Buscar" id="Buscar" value="N" autocomplete="off" checked> Nombre
+            </label>
+            <label class="btn btn-outline-light">
+                <input type="radio" name="Buscar" id="Buscar" value="A" autocomplete="off"> Apellido
+            </label>
+            <label class="btn btn-outline-light">
+                <input type="radio" name="Buscar" id="Buscar" value="DPI" autocomplete="off"> DPI/CUI
+            </label>
+        </div>
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Texto" style="position:absolute; left: 750px;">
+        <button class="btn btn-outline-info my-2 my-sm-0" style="position:absolute; left: 1000px;" type="submit">Buscar</button>
+    </form>
+</nav>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DPI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Municipio)
+            </th>
+            <th style="width:auto">
+                @Html.DisplayNameFor(model => model.Sintomas)
+            </th>
+            <th style="width:auto">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hospital)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Paciente item in ViewBag.Pacientes)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DPI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Municipio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sintomas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hospital)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

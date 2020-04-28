@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ProyectoFinal_EstDatos.Clases.Paciente>
+@using ProyectoFinal_EstDatos.Clases;
 
 @{
     ViewData["Title"] = "ColaConfirmados";
 }
 
-<h1>ColaConfirmados</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1>Lista de Espera de Confirmados</h1>
+<hr />
+<h3>@ViewBag.NombreHospital</h3>
+<hr />
 <table class="table">
     <thead>
         <tr>
@@ -30,66 +30,48 @@
             <th>
                 @Html.DisplayNameFor(model => model.Municipio)
             </th>
-            <th>
+            <th style="width:auto">
                 @Html.DisplayNameFor(model => model.Sintomas)
             </th>
-            <th>
+            <th style="width:auto">
                 @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prueba)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prioridad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hospital)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DPI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Departamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Municipio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sintomas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prueba)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prioridad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hospital)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (Paciente item in ViewBag.ColaConfirmados)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DPI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Municipio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sintomas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<div>
+    <a class="btn btn-outline-info" asp-action="Hospitales">Regresar</a>
+</div>

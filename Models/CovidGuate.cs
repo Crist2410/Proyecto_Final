@@ -15,8 +15,9 @@ namespace ProyectoFinal_EstDatos.Models
         public Hospital HEscuintla = new Hospital() { Nombre = "Hospital de Escuintla" };
         public Hospital HZacapa = new Hospital() { Nombre = "Hospital de Zacapa" };
         public Estadisticas EstadisticasGeneral = new Estadisticas();
+        public ArbolAVL<Paciente> AVLPacientes = new ArbolAVL<Paciente>();
         #region Metodos
-       public Hospital AsignarHospital(Paciente AuxPaciente)
+        public Hospital AsignarHospital(Paciente AuxPaciente)
        {
             Hospital HAux;
             int NumeroH = AuxPaciente.ObtenerHospital();

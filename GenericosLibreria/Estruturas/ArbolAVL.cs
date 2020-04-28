@@ -23,6 +23,7 @@ namespace LibreriaGenerica.Estruturas
             Editar(Valor, Delegado, NodoPivote);
 
         }
+
         private void Editar(T Valor, Delegate Delegado, Nodo<T> NodoRaiz)
         {
             if (Convert.ToInt32(Delegado.DynamicInvoke(Valor, NodoRaiz.Valor)) == 0)
@@ -292,5 +293,41 @@ namespace LibreriaGenerica.Estruturas
             }
             return ListaResultado;
         }
+        public List<T> Filtrar(Delegate Delegado, T Valor)
+        {
+            List<T> ListaResultado = new List<T>();
+            FiltrarRaiz(Raiz, ListaResultado, Delegado, Valor);
+            return ListaResultado;
+        }
+        private void FiltrarRaiz(Nodo<T> NodoRaiz, List<T> Lista, Delegate Delegado, T Valor)
+        {
+            if (NodoRaiz.Valor != null)
+            {
+                if (Convert.ToInt32(Delegado.DynamicInvoke(Valor, NodoRaiz.Valor)) == 0)
+                    Lista.Add(NodoRaiz.Valor);
+                FiltrarRaiz(NodoRaiz.Izquierda, Lista, Delegado, Valor);
+                FiltrarRaiz(NodoRaiz.Derecha, Lista, Delegado, Valor);
+            }
+        }
+
+        public bool ExiteValor(T Valor, Delegate Delegado)
+        {
+            return RecoridoExiste(Valor, Delegado, Raiz);
+        }
+        //True= Existe el Valor
+        //False = No Existe el Valor
+        private bool RecoridoExiste(T Valor, Delegate Delegado, Nodo<T> NodoRaiz)
+        {
+            if (NodoRaiz.Valor == null)
+                return false;
+            else if (Convert.ToInt32(Delegado.DynamicInvoke(Valor, NodoRaiz.Valor)) == 1)
+                return RecoridoExiste(Valor, Delegado, NodoRaiz.Derecha);
+            else if (Convert.ToInt32(Delegado.DynamicInvoke(Valor, NodoRaiz.Valor)) == -1)
+                return RecoridoExiste(Valor, Delegado, NodoRaiz.Izquierda);
+            else
+                return true;
+        }
+
+
     }
 }
