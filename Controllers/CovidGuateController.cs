@@ -13,6 +13,8 @@ namespace ProyectoFinal_EstDatos.Controllers
     {
         public static CovidGuate Covid19 = new CovidGuate();
         public static Hospital HospitalActual = new Hospital();
+        //public static Estadisticas CalcularEstadisticas = new Estadisticas();
+
         #region Ingrear Pacientes
         // Vista Ingresar Paciente
         public ActionResult IngresarPaciente()
@@ -43,6 +45,7 @@ namespace ProyectoFinal_EstDatos.Controllers
                 ViewBag.NombreHospital = HospitalAux.Nombre;
                 ViewBag.Sospechosos = HospitalAux.Sospechosos.Mostrar();
                 ViewBag.Regresar = true;
+                CovidGuate.EstadisticasGeneral.Sospechosos++;
                 return View("PacientesSospechosos");
             }
             else
@@ -50,9 +53,11 @@ namespace ProyectoFinal_EstDatos.Controllers
                 ViewBag.Error = "¡Paciente Repetido!";
                 return View("IngresarPaciente", AuxPaciente);
             }
+
         }
         public ActionResult RealizarPrueba()
         {
+            
             Paciente AuxPaciente = new Paciente();
             AuxPaciente = HospitalActual.Sospechosos.Delete(AuxPaciente.BuscarPrioridad);
             if (AuxPaciente.ExamenCovid19())
@@ -62,6 +67,7 @@ namespace ProyectoFinal_EstDatos.Controllers
                 {
                     HospitalActual.Camas.Añadir(AuxPaciente, AuxPaciente.Nombre + AuxPaciente.Apellido);
                     ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19,\n Fue Trasladado a Una Cama del Hospital";
+                    CovidGuate.EstadisticasGeneral.Contagiados++;
                 }
                 else
                 {
@@ -75,12 +81,17 @@ namespace ProyectoFinal_EstDatos.Controllers
                 ViewBag.Descripcion = "EL PACIENTE NO TIENE EL VIRUS COVID-19";
                  Covid19.AVLPacientes.Delete(AuxPaciente, AuxPaciente.BuscarDPI);
             }
+            
             return View(AuxPaciente);
         }
         public ActionResult BuscarPaciente()
         {
             ViewBag.Pacientes = Covid19.AVLPacientes.Mostrar();
             return View();
+        }
+        public ActionResult MostrarEstadisticas()
+        {
+            return View("MostrarEstadisticas");
         }
         public ActionResult RealizarBusqueda(string Buscar, string Texto)
         {

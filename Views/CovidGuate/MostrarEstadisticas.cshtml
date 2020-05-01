@@ -1,0 +1,38 @@
+﻿@model ProyectoFinal_EstDatos.Clases.Estadisticas
+
+@{
+    ViewData["Title"] = "MostrarEstadisticas";
+}
+
+<h1>MostrarEstadisticas</h1>
+
+<h3>Estadisticas de Covid-19 en Guatemala</h3>
+<div>
+    <h4>Estadisticas</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contagiados)
+        </dt>
+        <dd class="col-sm-10">
+            @ProyectoFinal_EstDatos.Models.CovidGuate.EstadisticasGeneral.Contagiados
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sospechosos)
+        </dt>
+        <dd class="col-sm-10">
+            @ProyectoFinal_EstDatos.Models.CovidGuate.EstadisticasGeneral.Sospechosos
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Recuperados)
+        </dt>
+        <dd class="col-sm-10">
+            @ProyectoFinal_EstDatos.Models.CovidGuate.EstadisticasGeneral.Recuperados
+        </dd>
+    </dl>
+    
+    <form asp-action="MostrarEstadisticas">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
