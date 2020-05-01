@@ -18,6 +18,7 @@ namespace ProyectoFinal_EstDatos.Clases
         public string Sintomas { get; set; }
         public string Descripcion { get; set; }
         public bool Prueba { get; set; }
+        public string Estado { get; set; }
         public int Prioridad { get; set; }
         public string Hospital { get; set; }
         public int Posicion { get; set; }

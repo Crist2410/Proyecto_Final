@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LibreriaGenerica.Estruturas;
+using GenericosLibreria.Estruturas;
 using ProyectoFinal_EstDatos.Clases;
 
 namespace ProyectoFinal_EstDatos.Models
@@ -16,6 +16,8 @@ namespace ProyectoFinal_EstDatos.Models
         public Hospital HZacapa = new Hospital() { Nombre = "Hospital de Zacapa" };
         public Estadisticas EstadisticasGeneral = new Estadisticas();
         public ArbolAVL<Paciente> AVLPacientes = new ArbolAVL<Paciente>();
+        public AVLRepetidos<Paciente> AVLNombre = new AVLRepetidos<Paciente>();
+        public AVLRepetidos<Paciente> AVLApellido = new AVLRepetidos<Paciente>();
         #region Metodos
         public Hospital AsignarHospital(Paciente AuxPaciente)
        {

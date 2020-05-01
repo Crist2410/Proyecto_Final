@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LibreriaGenerica.Interfaces;
+using GenericosLibreria.Interfaces;
 
-namespace LibreriaGenerica.Estruturas
+namespace GenericosLibreria.Estruturas
 {
     //INICIO COLA
     public class ColaPrioridad<T> : EstructuraBaseCola<T>
