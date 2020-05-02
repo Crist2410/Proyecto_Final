@@ -13,6 +13,6 @@ namespace ProyectoFinal_EstDatos.Clases
         public TablaHash<Paciente> Camas = new TablaHash<Paciente>();
         public ColaPrioridad<Paciente> EsperaConfrimados = new ColaPrioridad<Paciente>();
         public ColaPrioridad<Paciente> Sospechosos = new ColaPrioridad<Paciente>();
-
+        public Cama[] Arreglo = new Cama[10];
     }
 }

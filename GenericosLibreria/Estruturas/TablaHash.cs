@@ -8,8 +8,7 @@ namespace GenericosLibreria.Estruturas
     public class TablaHash<T>
     {
         int TotalPocisiones = 10;
-        T[] Tabla = new T[10];
-        
+        List<T>[] Tabla = new List<T>[10];
         private int ContarVocales(char Letra, string Texto, int Numero)
         {
             int Cantidad = 0;
@@ -70,40 +69,57 @@ namespace GenericosLibreria.Estruturas
             Valor %= TotalPocisiones;
             return Valor;
         }
-        //False = Lleno 
-        public bool Añadir(T Valor, string Texto)
+        public bool Añadir(T Valor, int Posicion, Delegate Delegado)
         {
-            int Posicion = ObtenerValorHash(Texto);
-            if (ChequeoIngresar(Posicion))
+            if (Tabla[Posicion] == null)
             {
-                Tabla[Posicion] = Valor;
-                return true;
+                List<T> ListaTabla = new List<T>();
+                ListaTabla.Add(Valor);
+                Tabla[Posicion] = ListaTabla;
             }
             else
-                return false;
-            
+            {
+                foreach (var item in Tabla[Posicion])
+                    if (Convert.ToInt32(Delegado.DynamicInvoke(Valor, item)) == 0)
+                        return false;
+                Tabla[Posicion].Add(Valor);
+            }
+            return true;
         }
-        //True = Vacio
+        public T Buscar(T Valor, string Texto, Delegate Delegado)
+        {
+            int Posicion = ObtenerValorHash(Texto);
+            if (Tabla[Posicion].Count == 1 && Convert.ToInt32(Delegado.DynamicInvoke(Valor, Tabla[Posicion][0])) == 0)
+                return Tabla[Posicion][0];
+            else
+                foreach (var item in Tabla[Posicion])
+                    if (Convert.ToInt32(Delegado.DynamicInvoke(Valor, item)) == 0)
+                        return item;
+            return default(T);
+        }
         public bool ChequeoIngresar(int Posicion)
         {
-            if(Tabla[Posicion] == null)
+            if (Tabla[Posicion] == null)
                 return true;
             else
                 return false;
         }
-        public T Buscar(string Texto)
+        public void Borrar(T Valor, string Texto)
         {
             int Posicion = ObtenerValorHash(Texto);
-            return Tabla[Posicion];
+            if (Tabla[Posicion].Count == 1)
+                Tabla[Posicion] = null;
+            else
+                Tabla[Posicion].Remove(Valor);
         }
-        public void Borrar(string Texto)
+        public List<T> Mostrar()
         {
-            int Posicion = ObtenerValorHash(Texto);
-            Tabla[Posicion] = default;
-        }
-        public T[] Mostrar()
-        {
-            return Tabla;
+            List<T> AuxLista = new List<T>();
+            foreach (var Posicion in Tabla)
+                if (Posicion != null)
+                    foreach (var Nodo in Posicion)
+                        AuxLista.Add(Nodo);
+            return AuxLista;
         }
 
     }

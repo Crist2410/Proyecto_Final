@@ -103,6 +103,13 @@ namespace ProyectoFinal_EstDatos.Controllers
         {
             return View("MostrarEstadisticas");
         }
+
+        public ActionResult CurarPaciente(int Posicion)
+        {
+
+            return View("CurarPaciente");
+        }
+
         public ActionResult RealizarBusqueda(string Buscar, string Texto)
         {
             Paciente AuxPaciente = new Paciente();
