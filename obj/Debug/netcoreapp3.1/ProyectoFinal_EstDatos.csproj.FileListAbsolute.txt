@@ -235,3 +235,4 @@ C:\Users\Jose Giron\Desktop\Programas estructuras\Proyecto_Final\obj\Debug\netco
 C:\Users\Jose Giron\Desktop\Programas estructuras\Proyecto_Final\obj\Debug\netcoreapp3.1\Razor\Views\CovidGuate\MostrarEstadisticas.cshtml.g.cs
 C:\Users\Crist\Desktop\ProyectoFinal_EstDatos\obj\Debug\netcoreapp3.1\Razor\Views\CovidGuate\CurarPaciente.cshtml.g.cs
 C:\Users\Crist\Desktop\ProyectoFinal_EstDatos\obj\Debug\netcoreapp3.1\Razor\Views\CovidGuate\MostrarEstadisticas.cshtml.g.cs
+C:\Users\Crist\Desktop\ProyectoFinal_EstDatos\obj\Debug\netcoreapp3.1\Razor\Views\CovidGuate\MostrarTablaHash.cshtml.g.cs

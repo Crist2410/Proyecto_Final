@@ -14,11 +14,9 @@ namespace ProyectoFinal_EstDatos.Models
         public Hospital HPeten = new Hospital() { Nombre = "Hospital de Petén" };
         public Hospital HEscuintla = new Hospital() { Nombre = "Hospital de Escuintla" };
         public Hospital HZacapa = new Hospital() { Nombre = "Hospital de Zacapa" };
-
-        public static Estadisticas EstadisticasGeneral = new Estadisticas();
-        
+        public TablaHash<Cama> CamasPacientes = new TablaHash<Cama>();
+        public Estadisticas EstadisticasGeneral = new Estadisticas();
         public ArbolAVL<Paciente> AVLPacientes = new ArbolAVL<Paciente>();
-        
         public AVLRepetidos<Paciente> AVLNombre = new AVLRepetidos<Paciente>();
         public AVLRepetidos<Paciente> AVLApellido = new AVLRepetidos<Paciente>();
         #region Metodos
@@ -53,6 +51,7 @@ namespace ProyectoFinal_EstDatos.Models
             }
             return HAux;
         }
+       
         #endregion
     }
 }

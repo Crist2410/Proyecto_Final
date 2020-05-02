@@ -48,7 +48,7 @@ namespace ProyectoFinal_EstDatos.Controllers
                 ViewBag.NombreHospital = HospitalActual.Nombre;
                 ViewBag.Sospechosos = HospitalActual.Sospechosos.Mostrar();
                 ViewBag.Regresar = true;
-                CovidGuate.EstadisticasGeneral.Sospechosos++;
+                Covid19.EstadisticasGeneral.Sospechosos++;
                 return View("PacientesSospechosos");
             }
             else
@@ -60,41 +60,48 @@ namespace ProyectoFinal_EstDatos.Controllers
         }
         public ActionResult RealizarPrueba()
         {
-            
-            Paciente AuxPaciente = new Paciente();
-            AuxPaciente = HospitalActual.Sospechosos.Delete(AuxPaciente.BuscarPrioridad);
-            if (AuxPaciente.ExamenCovid19())
+            try
             {
-                AuxPaciente.Estado = "Confirmado de Covid-19";
-                Covid19.AVLPacientes.Edit(AuxPaciente, AuxPaciente.BuscarDPI);
-                Covid19.AVLNombre.Editar(AuxPaciente, AuxPaciente.BuscarNombre, AuxPaciente.BuscarDPI); ;
-                Covid19.AVLApellido.Editar(AuxPaciente, AuxPaciente.BuscarApellido, AuxPaciente.BuscarDPI);
-                int HashPosicion = HospitalActual.Camas.ObtenerValorHash(AuxPaciente.Nombre + AuxPaciente.Apellido);
-                if (HospitalActual.Camas.ChequeoIngresar(HashPosicion))
+                Paciente AuxPaciente = new Paciente();
+                AuxPaciente = HospitalActual.Sospechosos.Delete(AuxPaciente.BuscarPrioridad);
+                if (AuxPaciente.ExamenCovid19())
                 {
-                    HospitalActual.Camas.Añadir(AuxPaciente, AuxPaciente.Nombre + AuxPaciente.Apellido);
-                    ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19,";
-                    ViewBag.Descripcion2 = "Fue Trasladado a Una Cama del " + HospitalActual.Nombre;
-                    CovidGuate.EstadisticasGeneral.Contagiados++;
+                    AuxPaciente.Estado = "Confirmado de Covid-19";
+                    Covid19.AVLPacientes.Edit(AuxPaciente, AuxPaciente.BuscarDPI);
+                    Covid19.AVLNombre.Editar(AuxPaciente, AuxPaciente.BuscarNombre, AuxPaciente.BuscarDPI); ;
+                    Covid19.AVLApellido.Editar(AuxPaciente, AuxPaciente.BuscarApellido, AuxPaciente.BuscarDPI);
+                    if (HospitalActual.ChequeoIngresar())
+                    {
+                        Cama AuxCama = HospitalActual.Añadir(AuxPaciente);
+                        Covid19.CamasPacientes.Añadir(AuxCama, AuxCama.Id);
+                        ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19,";
+                        ViewBag.Descripcion2 = "Fue Trasladado a Una Cama del " + HospitalActual.Nombre;
+                    }
+                    else
+                    {
+                        HospitalActual.EsperaConfrimados.Add(AuxPaciente, AuxPaciente.BuscarPrioridad);
+                        ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19";
+                        ViewBag.Descripcion2 = "Fue Trasladado a Lista de Espera Mienstras se Habilita una Cama";
+                    }
+                    Covid19.EstadisticasGeneral.Contagiados++;
                 }
                 else
                 {
-                    HospitalActual.EsperaConfrimados.Add(AuxPaciente, AuxPaciente.BuscarPrioridad);
-                    ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19";
-                    ViewBag.Descripcion2 = "Fue Trasladado a Lista de Espera Mienstras se Habilita una Cama";
+                    //Libre 
+                    ViewBag.Descripcion = "EL PACIENTE NO TIENE EL VIRUS COVID-19";
+                    AuxPaciente.Estado = "Libre de Covid-19";
+                    Covid19.AVLPacientes.Edit(AuxPaciente, AuxPaciente.BuscarDPI);
+                    Covid19.AVLNombre.Editar(AuxPaciente, AuxPaciente.BuscarNombre, AuxPaciente.BuscarDPI);
+                    Covid19.AVLApellido.Editar(AuxPaciente, AuxPaciente.BuscarApellido, AuxPaciente.BuscarDPI);
                 }
+                Covid19.EstadisticasGeneral.PruebasRealizadas++;
+                return View(AuxPaciente);
             }
-            else
-            {               
-                //Libre 
-                ViewBag.Descripcion = "EL PACIENTE NO TIENE EL VIRUS COVID-19";
-                AuxPaciente.Estado = "Libre de Covid-19";
-                Covid19.AVLPacientes.Edit(AuxPaciente, AuxPaciente.BuscarDPI);
-                Covid19.AVLNombre.Editar(AuxPaciente, AuxPaciente.BuscarNombre, AuxPaciente.BuscarDPI); 
-                Covid19.AVLApellido.Editar(AuxPaciente, AuxPaciente.BuscarApellido, AuxPaciente.BuscarDPI); 
+            catch (Exception)
+            {
+                return View("Index");
             }
-            
-            return View(AuxPaciente);
+           
         }
         public ActionResult BuscarPaciente()
         {
@@ -103,8 +110,25 @@ namespace ProyectoFinal_EstDatos.Controllers
         }
         public ActionResult MostrarEstadisticas()
         {
-            return View("MostrarEstadisticas");
+            double Porcentaje = ((Covid19.EstadisticasGeneral.Contagiados / Covid19.EstadisticasGeneral.PruebasRealizadas) * 100);
+            Covid19.EstadisticasGeneral.PorcentajePositivos = Convert.ToString(Porcentaje) + "%";
+            return View(Covid19.EstadisticasGeneral);
         }
+
+        public ActionResult CurarPaciente(int Posicion)
+        {
+            Cama AuxCama = HospitalActual.Camas[Posicion];
+            HospitalActual.Camas[Posicion] = null;
+            Covid19.CamasPacientes.Borrar(AuxCama.Id);
+            Paciente AuxPaciente = AuxCama.PacienteCama;
+            AuxPaciente.Estado = "Recuperado de Covid-19";
+            Covid19.AVLPacientes.Edit(AuxPaciente, AuxPaciente.BuscarDPI);
+            Covid19.AVLNombre.Editar(AuxPaciente, AuxPaciente.BuscarNombre, AuxPaciente.BuscarDPI);
+            Covid19.AVLApellido.Editar(AuxPaciente, AuxPaciente.BuscarApellido, AuxPaciente.BuscarDPI);
+            Covid19.EstadisticasGeneral.Recuperados++;
+            return View( AuxPaciente);
+        }
+
         public ActionResult RealizarBusqueda(string Buscar, string Texto)
         {
             Paciente AuxPaciente = new Paciente();
@@ -140,6 +164,17 @@ namespace ProyectoFinal_EstDatos.Controllers
         public ActionResult Hospitales()
         {
             HospitalActual = new Hospital();
+            return View();
+        }
+        public ActionResult MostrarTablaHash()
+        {
+           Cama[] ListaCamas = Covid19.CamasPacientes.Mostrar();
+            for (int i = 0; i < 50; i++)
+                if (ListaCamas[i]== null || ListaCamas[i].PacienteCama == null)
+                {
+                    ListaCamas[i] = new Cama() { Id = (i + 1), Nombre = "Cama", DPI = "Vacia", Estado ="Disponible"};
+                }
+            ViewBag.Tabla = ListaCamas;
             return View();
         }
         public ActionResult MostrarHospital()
@@ -178,14 +213,18 @@ namespace ProyectoFinal_EstDatos.Controllers
         public ActionResult CamasHospital()
         {
             ViewBag.NombreHospital = HospitalActual.Nombre;
-            Paciente[] ListaPacientes = HospitalActual.Camas.Mostrar();
+            Cama[] ListaCamas = HospitalActual.Camas;
+            Paciente[] ListaPacientes = new Paciente[10];
             for (int i = 0; i < 10; i++)
-                if (ListaPacientes[i] == null)
+                if (ListaCamas[i].PacienteCama == null)
                 {
                     ListaPacientes[i] = new Paciente() { Posicion = (i + 1), Nombre = "Cama", Apellido = "Vacia" };
                 }
                 else
+                {
+                    ListaPacientes[i] = ListaCamas[i].PacienteCama;
                     ListaPacientes[i].Posicion = (i + 1);
+                }
             ViewBag.Confirmados = ListaPacientes;
             return View();
         }

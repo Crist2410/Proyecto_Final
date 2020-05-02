@@ -75,11 +75,10 @@
                             @if (item.Nombre == "Cama")
                             {
                                 <a class="btn btn-outline-danger btn-lg btn-block"  >Recuperado</a>
-
                             }
                             else
                             {
-                                <a href='@Url.Action("RecuperarPaciente", "CovidGuate")' class="btn btn-outline-success btn-lg btn-block">Recuperado</a>
+                                <a href='@Url.Action("CurarPaciente", "CovidGuate", new { Posicion = (item.Posicion - 1)})' class="btn btn-outline-success btn-lg btn-block">Recuperado</a>
                             }
                         </td>
                     </tr>
@@ -91,3 +90,4 @@
         </div>
     </div>
 </body>
+
