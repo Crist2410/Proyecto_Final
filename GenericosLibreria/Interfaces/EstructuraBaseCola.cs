@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LibreriaGenerica.Estruturas;
+using GenericosLibreria.Estruturas;
 
-namespace LibreriaGenerica.Interfaces
+namespace GenericosLibreria.Interfaces
 {
     public abstract class EstructuraBaseCola<T>
     {

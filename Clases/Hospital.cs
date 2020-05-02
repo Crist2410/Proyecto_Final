@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProyectoFinal_EstDatos.Clases;
-using LibreriaGenerica.Estruturas;
+using GenericosLibreria.Estruturas;
 
 namespace ProyectoFinal_EstDatos.Clases
 {

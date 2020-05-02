@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LibreriaGenerica.Interfaces;
+using GenericosLibreria.Interfaces;
 
-namespace LibreriaGenerica.Estruturas
+namespace GenericosLibreria.Estruturas
 {
     public class ArbolAVL<T> : EstruturaBaseArbol<T> where T : IComparable
     {
