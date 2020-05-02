@@ -20561,8 +20561,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Crist\\Desktop\\ProyectoFinal_EstDatos\\Views\\CovidGuate\\CurarPaciente.cshtml",
+      "TargetPath": "Views\\CovidGuate\\CurarPaciente.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Crist\\Desktop\\ProyectoFinal_EstDatos\\Views\\CovidGuate\\BuscarPaciente.cshtml",
       "TargetPath": "Views\\CovidGuate\\BuscarPaciente.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Crist\\Desktop\\ProyectoFinal_EstDatos\\Views\\CovidGuate\\MostrarEstadisticas.cshtml",
+      "TargetPath": "Views\\CovidGuate\\MostrarEstadisticas.cshtml",
       "FileKind": "mvc"
     },
     {

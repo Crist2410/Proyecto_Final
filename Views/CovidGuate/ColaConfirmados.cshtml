@@ -4,74 +4,88 @@
 @{
     ViewData["Title"] = "ColaConfirmados";
 }
+    <body>
 
-<h1>Lista de Espera de Confirmados</h1>
-<hr />
-<h3>@ViewBag.NombreHospital</h3>
-<hr />
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Edad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DPI)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Departamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Municipio)
-            </th>
-            <th style="width:auto">
-                @Html.DisplayNameFor(model => model.Sintomas)
-            </th>
-            <th style="width:auto">
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Paciente item in ViewBag.ColaConfirmados)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Apellido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Edad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DPI)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Departamento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Municipio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sintomas)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+        <header class="PacientesSospechos">
+            <div class="textos">
+                <h1 class="titulo">Lista de Espera de Confirmados</h1>
+                <h3 class="subtitulo">@ViewBag.NombreHospital</h3>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
+        <div class="container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Apellido)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Edad)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DPI)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Departamento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Municipio)
+                        </th>
+                        <th style="width:auto">
+                            @Html.DisplayNameFor(model => model.Sintomas)
+                        </th>
+                        <th style="width:auto">
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Paciente item in ViewBag.ColaConfirmados)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Apellido)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Edad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DPI)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Departamento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Municipio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sintomas)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="sesgoabajo-lista"></div>
+        <section class="contenedorlista">
+            <p>
 
-<div>
-    <a class="btn btn-outline-info" asp-action="MostrarHospital">Regresar</a>
-</div>
+            </p>
+            <center>
+                <a class="btn btn-outline-light btn-block" asp-action="MostrarHospital">Regresar</a>
+            </center>
+            <p>
+
+            </p>
+        </section>
+    </body>

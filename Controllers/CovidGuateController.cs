@@ -13,6 +13,8 @@ namespace ProyectoFinal_EstDatos.Controllers
     {
         public static CovidGuate Covid19 = new CovidGuate();
         public static Hospital HospitalActual = new Hospital();
+        //public static Estadisticas CalcularEstadisticas = new Estadisticas();
+
         #region Ingrear Pacientes
         // Vista Ingresar Paciente
         public ActionResult IngresarPaciente()
@@ -39,13 +41,14 @@ namespace ProyectoFinal_EstDatos.Controllers
             //Asignacion a Hospital Y Mostar Cola Sospechosos
             if (!Covid19.AVLPacientes.ExiteValor(AuxPaciente, AuxPaciente.BuscarDPI))
             {
-                Hospital HospitalAux = Covid19.AsignarHospital(AuxPaciente);
+                HospitalActual = Covid19.AsignarHospital(AuxPaciente);
                 Covid19.AVLPacientes.Add(AuxPaciente, AuxPaciente.BuscarDPI);
                 Covid19.AVLNombre.Add(AuxPaciente, AuxPaciente.BuscarNombre);
                 Covid19.AVLApellido.Add(AuxPaciente, AuxPaciente.BuscarApellido);
-                ViewBag.NombreHospital = HospitalAux.Nombre;
-                ViewBag.Sospechosos = HospitalAux.Sospechosos.Mostrar();
+                ViewBag.NombreHospital = HospitalActual.Nombre;
+                ViewBag.Sospechosos = HospitalActual.Sospechosos.Mostrar();
                 ViewBag.Regresar = true;
+                CovidGuate.EstadisticasGeneral.Sospechosos++;
                 return View("PacientesSospechosos");
             }
             else
@@ -53,9 +56,11 @@ namespace ProyectoFinal_EstDatos.Controllers
                 ViewBag.Error = "¡Paciente Repetido!";
                 return View("IngresarPaciente", AuxPaciente);
             }
+
         }
         public ActionResult RealizarPrueba()
         {
+            
             Paciente AuxPaciente = new Paciente();
             AuxPaciente = HospitalActual.Sospechosos.Delete(AuxPaciente.BuscarPrioridad);
             if (AuxPaciente.ExamenCovid19())
@@ -68,12 +73,15 @@ namespace ProyectoFinal_EstDatos.Controllers
                 if (HospitalActual.Camas.ChequeoIngresar(HashPosicion))
                 {
                     HospitalActual.Camas.Añadir(AuxPaciente, AuxPaciente.Nombre + AuxPaciente.Apellido);
-                    ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19,\n Fue Trasladado a Una Cama del Hospital";
+                    ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19,";
+                    ViewBag.Descripcion2 = "Fue Trasladado a Una Cama del " + HospitalActual.Nombre;
+                    CovidGuate.EstadisticasGeneral.Contagiados++;
                 }
                 else
                 {
                     HospitalActual.EsperaConfrimados.Add(AuxPaciente, AuxPaciente.BuscarPrioridad);
-                    ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19,\n Fue Trasladado a Lista de Espera Mienstras se Habilita una Cama";
+                    ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19";
+                    ViewBag.Descripcion2 = "Fue Trasladado a Lista de Espera Mienstras se Habilita una Cama";
                 }
             }
             else
@@ -82,15 +90,20 @@ namespace ProyectoFinal_EstDatos.Controllers
                 ViewBag.Descripcion = "EL PACIENTE NO TIENE EL VIRUS COVID-19";
                 AuxPaciente.Estado = "Libre de Covid-19";
                 Covid19.AVLPacientes.Edit(AuxPaciente, AuxPaciente.BuscarDPI);
-                Covid19.AVLNombre.Editar(AuxPaciente, AuxPaciente.BuscarNombre, AuxPaciente.BuscarDPI); ;
+                Covid19.AVLNombre.Editar(AuxPaciente, AuxPaciente.BuscarNombre, AuxPaciente.BuscarDPI); 
                 Covid19.AVLApellido.Editar(AuxPaciente, AuxPaciente.BuscarApellido, AuxPaciente.BuscarDPI); 
             }
+            
             return View(AuxPaciente);
         }
         public ActionResult BuscarPaciente()
         {
             ViewBag.Pacientes = Covid19.AVLPacientes.Mostrar();
             return View();
+        }
+        public ActionResult MostrarEstadisticas()
+        {
+            return View("MostrarEstadisticas");
         }
         public ActionResult RealizarBusqueda(string Buscar, string Texto)
         {

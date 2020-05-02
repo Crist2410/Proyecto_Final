@@ -3,101 +3,101 @@
 @{
     ViewData["Title"] = "IngresarPaciente";
 }
-<header>
-    <div class="textos">
-        <h1 class="titulo">Ingresar Paciente</h1>
-        <h3 class="subtitulo">Paciente</h3>
-    </div>
-    <div class="sesgoabajo"></div>
-</header>
-<h2 style="color:red">@ViewBag.Error</h2>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <form asp-action="GuardarPaciente">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Nombre" class="control-label"></label>
-                        <input asp-for="Nombre" class="form-control" required placeholder="Nombre Del Paciente" />
-                        <span asp-validation-for="Nombre" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Apellido" class="control-label"></label>
-                        <input asp-for="Apellido" class="form-control" required placeholder="Apellido Del Paciente" />
-                        <span asp-validation-for="Apellido" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Edad" class="control-label"></label>
-                        <input asp-for="Edad" class="form-control" min="0" max="99" required placeholder="Edad Del Paciente" />
-                        <span asp-validation-for="Edad" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DPI" class="control-label">DPI o CUI</label>
-                        <input asp-for="DPI" class="form-control" min="1000000000000" max="9999999999999" required placeholder="CUI/DPI Del Paciente" />
-                        <span asp-validation-for="DPI" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Departamento" class="control-label"></label>
-                        <select asp-for="Departamento" class="form-control" name="Departamento" required>
-                            <option>Petén</option>
-                            <option>Izabal</option>
-                            <option>Alta Verapaz</option>
-                            <option>Quiché</option>
-                            <option>Huehuetenango</option>
-                            <option>Escuintla</option>
-                            <option>San Marcos</option>
-                            <option>Jutiapa</option>
-                            <option>Baja Verapaz</option>
-                            <option>Zacapa</option>
-                            <option>Suchitepéquez</option>
-                            <option>Chiquimula</option>
-                            <option>Guatemala</option>
-                            <option>Jalapa</option>
-                            <option>Chimaltenango</option>
-                            <option>Quetzaltenango</option>
-                            <option>El Progreso</option>
-                            <option>Retalhuleu</option>
-                            <option>Sololá</option>
-                            <option>Totonicapán</option>
-                            <option>Sacatepéquez</option>
-                        </select>
-                        <span asp-validation-for="Departamento" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Municipio" class="control-label"></label>
-                        <input asp-for="Municipio" class="form-control" required placeholder="Municipio Del Paciente" />
-                        <span asp-validation-for="Municipio" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Sintomas" class="control-label"></label>
-                        <input asp-for="Sintomas" class="form-control" required placeholder="Sintomas Presentados" />
-                        <span asp-validation-for="Sintomas" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Descripcion" class="control-label"></label>
-                        <input asp-for="Descripcion" class="form-control" required placeholder="Actividades Recientes" />
-                        <span asp-validation-for="Descripcion" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Crear" class="btn btn-primary" />
-                    </div>
-                </form>
+    <body>
+        <header class="IngresarPaciente">
+            <div class="textos">
+                <h1 class="titulo">Ingresar Paciente</h1>
+                <h3 class="subtitulo">Paciente</h3>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
+        <div class="container">
+            <h2 style="color:red">@ViewBag.Error</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="GuardarPaciente">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Nombre" class="control-label"></label>
+                            <input asp-for="Nombre" class="form-control" required placeholder="Nombre Del Paciente" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Apellido" class="control-label"></label>
+                            <input asp-for="Apellido" class="form-control" required placeholder="Apellido Del Paciente" />
+                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Edad" class="control-label"></label>
+                            <input asp-for="Edad" class="form-control" min="0" max="99" required placeholder="Edad Del Paciente" />
+                            <span asp-validation-for="Edad" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DPI" class="control-label">DPI o CUI</label>
+                            <input asp-for="DPI" class="form-control" min="1000000000000" max="9999999999999" required placeholder="CUI/DPI Del Paciente" />
+                            <span asp-validation-for="DPI" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Departamento" class="control-label"></label>
+                            <select asp-for="Departamento" class="form-control" name="Departamento" required>
+                                <option>Petén</option>
+                                <option>Izabal</option>
+                                <option>Alta Verapaz</option>
+                                <option>Quiché</option>
+                                <option>Huehuetenango</option>
+                                <option>Escuintla</option>
+                                <option>San Marcos</option>
+                                <option>Jutiapa</option>
+                                <option>Baja Verapaz</option>
+                                <option>Zacapa</option>
+                                <option>Suchitepéquez</option>
+                                <option>Chiquimula</option>
+                                <option>Guatemala</option>
+                                <option>Jalapa</option>
+                                <option>Chimaltenango</option>
+                                <option>Quetzaltenango</option>
+                                <option>El Progreso</option>
+                                <option>Retalhuleu</option>
+                                <option>Sololá</option>
+                                <option>Totonicapán</option>
+                                <option>Sacatepéquez</option>
+                            </select>
+                            <span asp-validation-for="Departamento" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Municipio" class="control-label"></label>
+                            <input asp-for="Municipio" class="form-control" required placeholder="Municipio Del Paciente" />
+                            <span asp-validation-for="Municipio" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Sintomas" class="control-label"></label>
+                            <input asp-for="Sintomas" class="form-control" required placeholder="Sintomas Presentados" />
+                            <span asp-validation-for="Sintomas" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Descripcion" class="control-label"></label>
+                            <input asp-for="Descripcion" class="form-control" required placeholder="Actividades Recientes" />
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Crear" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="sesgoabajo-unico"></div>
-    <section class="contenedorpaciente">
-        <p>
+        <div class="sesgoabajo-unico"></div>
+        <section class="contenedorpaciente">
+            <p>
 
-        </p>
-        <a class="btn btn-outline-info btn-lg btn-block" asp-action="Index">Regresar</a>
-        <p>
+            </p>
+            <a class="btn btn-outline-info btn-lg btn-block" asp-action="Index">Regresar</a>
+            <p>
 
-        </p>
-    </section>
-    
+            </p>
+        </section>
 
 
 
-</body>
+
+    </body>
