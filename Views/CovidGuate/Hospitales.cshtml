@@ -2,24 +2,48 @@
 @{
     ViewData["Title"] = "Hospitales";
 }
-<div class="text-center">
-    <h1>Hospitales </h1>
-    <h2>
-        Red De Hospitales Covid-19 en Guatemala
-    </h2>
-</div>
-<hr />
-<hr />
-<a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 1})' class="btn btn-outline-dark btn-lg btn-block">Hospital De Gualetema</a>
-<hr />
-<a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 2})' class="btn btn-outline-info btn-lg btn-block">Hospital De Quetzaltenango</a>
-<hr />
-<a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 3})' class="btn btn-outline-warning btn-lg btn-block">Hospital De Petén</a>
-<hr />
-<a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 4})' class="btn btn-outline-primary btn-lg btn-block">Hospital De Escuintla</a>
-<hr />
-<a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 5})' class="btn btn-outline-success btn-lg btn-block">Hospital De Zacapa</a>
-<hr />
-<div>
-    <a class="btn btn-outline-info btn-lg btn-block" asp-action="Index">Regresar</a>
-</div>
+    <body>
+        <header class="Hospitales">
+            <div class="textos">
+                <h1 class="titulo">Hospitales</h1>
+                <h3 class="subtitulo"> Red De Hospitales Covid-19 en Guatemala</h3>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
+
+        <section class="cards contenedor">
+            <h2 style="text-align:center">Hospiales</h2>
+            <hr />
+            <div class="content-cards">
+                <article class="card">
+                    <img src="~/Imagenes/Guatemala.jpg" alt="" width="260">
+                    <a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 1})' class="btn btn-outline-dark btn-lg btn-block">Hospital De Gualetema</a>
+                </article>
+                <article class="card">
+                    <img src="~/Imagenes/Region2.jpg" alt="" width="260">
+                    <a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 2})' class="btn btn-outline-info btn-lg btn-block">Hospital De Quetzaltenango</a>
+                </article>
+                <article class="card">
+                    <img src="~/Imagenes/Region3.jpg" alt="" width="260">
+                    <a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 3})' class="btn btn-outline-warning btn-lg btn-block">Hospital De Petén</a>
+                </article>
+            </div>
+            <hr />
+            <div class="content-cards">
+                <article class="card">
+                    <img src="~/Imagenes/Region4.jpg" alt="" width="260">
+                    <a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 4})' class="btn btn-outline-primary btn-lg btn-block">Hospital De Escuintla</a>
+                </article>
+                <article class="card">
+                    <img src="~/Imagenes/Region5.jpg" alt="" width="260">
+                    <a href='@Url.Action("SeleccionarHospital","CovidGuate", new { id = 5})' class="btn btn-outline-success btn-lg btn-block">Hospital De Zacapa</a>
+                </article>
+                <article class="card">
+                    <img src="~/Imagenes/Regresar.png" alt="" width="250">
+                    <a class="btn btn-outline-info btn-lg btn-block" asp-action="Index">Regresar</a>
+                </article>
+            </div>
+        </section>
+        <h2 class="titulo-final"></h2>
+        <div class="sesgoabajo-hospitales"></div>
+    </body>

@@ -176,14 +176,12 @@ namespace ProyectoFinal_EstDatos.Controllers
             ViewBag.Confirmados = ListaPacientes;
             return View();
         }
-
-
-        #endregion
-        // GET: CovidGuate/Create
-        public ActionResult Create()
+        public ActionResult Index()
         {
             return View();
         }
+        #endregion
+
 
         // POST: CovidGuate/Create
         [HttpPost]
