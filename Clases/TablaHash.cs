@@ -7,7 +7,7 @@ namespace ProyectoFinal_EstDatos.Clases
 {
     public class TablaHash<T>
     {
-        T[] Tabla = new T[50];
+        private T[] Tabla = new T[50];
        
         public void Añadir(T Valor, int Posicion)
         {

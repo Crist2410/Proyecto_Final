@@ -16,7 +16,7 @@ namespace ProyectoFinal_EstDatos.Clases
         public bool ChequeoIngresar()
         {
             foreach (var item in Camas)
-            if (item.PacienteCama == null)
+            if (item == null || item.PacienteCama ==null)
                 return true;
             return false;
         }
@@ -27,14 +27,15 @@ namespace ProyectoFinal_EstDatos.Clases
             Posicion = (Posicion * 10) - 10;
             for (int i = 0; i < 10; i++)
             {
-                if (Camas[i].PacienteCama == null)
+                if (Camas[i] == null || Camas[i].PacienteCama == null)
                 {
-                    Camas[Posicion + i].PacienteCama = AuxPaciente;
-                    Camas[Posicion + i].Id = Posicion + i;
-                    Camas[Posicion + i].Estado = "Ocupada";
-                    Camas[Posicion + i].Nombre = AuxPaciente.Nombre + " " + AuxPaciente.Apellido;
-                    Camas[Posicion + i].DPI = Convert.ToString(AuxPaciente.DPI);
-                    AuxCama = Camas[Posicion + i];
+                    AuxCama.PacienteCama = AuxPaciente;
+                    AuxCama.Id = Posicion + i;
+                    AuxCama.Estado = "Ocupada";
+                    AuxCama.Nombre = AuxPaciente.Nombre + " " + AuxPaciente.Apellido;
+                    AuxCama.DPI = Convert.ToString(AuxPaciente.DPI);
+                    Camas[i] = AuxCama ;
+                    i = 10;
                 }
             }
             return AuxCama;

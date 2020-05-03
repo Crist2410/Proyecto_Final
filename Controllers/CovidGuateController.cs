@@ -60,8 +60,8 @@ namespace ProyectoFinal_EstDatos.Controllers
         }
         public ActionResult RealizarPrueba()
         {
-            try
-            {
+            //try
+            //{
                 Paciente AuxPaciente = new Paciente();
                 AuxPaciente = HospitalActual.Sospechosos.Delete(AuxPaciente.BuscarPrioridad);
                 if (AuxPaciente.ExamenCovid19())
@@ -96,11 +96,11 @@ namespace ProyectoFinal_EstDatos.Controllers
                 }
                 Covid19.EstadisticasGeneral.PruebasRealizadas++;
                 return View(AuxPaciente);
-            }
-            catch (Exception)
-            {
-                return View("Index");
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return View("Index");
+            //}
            
         }
         public ActionResult BuscarPaciente()
@@ -110,8 +110,15 @@ namespace ProyectoFinal_EstDatos.Controllers
         }
         public ActionResult MostrarEstadisticas()
         {
-            double Porcentaje = ((Covid19.EstadisticasGeneral.Contagiados / Covid19.EstadisticasGeneral.PruebasRealizadas) * 100);
-            Covid19.EstadisticasGeneral.PorcentajePositivos = Convert.ToString(Porcentaje) + "%";
+            try
+            {
+                double Porcentaje = ((Covid19.EstadisticasGeneral.Contagiados / Covid19.EstadisticasGeneral.PruebasRealizadas) * 100);
+                Covid19.EstadisticasGeneral.PorcentajePositivos = Convert.ToString(Porcentaje) + "%";
+            }
+            catch (Exception)
+            {
+                Covid19.EstadisticasGeneral.PorcentajePositivos ="0.00%";
+            }
             return View(Covid19.EstadisticasGeneral);
         }
 
@@ -216,7 +223,7 @@ namespace ProyectoFinal_EstDatos.Controllers
             Cama[] ListaCamas = HospitalActual.Camas;
             Paciente[] ListaPacientes = new Paciente[10];
             for (int i = 0; i < 10; i++)
-                if (ListaCamas[i].PacienteCama == null)
+                if (ListaCamas[i] == null || ListaCamas[i].PacienteCama == null )
                 {
                     ListaPacientes[i] = new Paciente() { Posicion = (i + 1), Nombre = "Cama", Apellido = "Vacia" };
                 }

@@ -92,20 +92,22 @@ namespace GenericosLibreria.Estruturas
         {
             Nodo<T> AuxNodo = new Nodo<T>();
             AuxNodo.Valor = NodoRaiz.Valor;
-            if (NodoRaiz.Izquierda.Valor != null && Convert.ToInt32(Delegado.DynamicInvoke(NodoRaiz.Izquierda.Valor, NodoRaiz.Valor)) == 1 &&
-                Convert.ToInt32(Delegado.DynamicInvoke(NodoRaiz.Izquierda.Valor, NodoRaiz.Derecha.Valor)) == 1)
+            if (NodoRaiz.Izquierda.Valor != null && Convert.ToInt32(Delegado.DynamicInvoke(NodoRaiz.Izquierda.Valor, NodoRaiz.Valor)) == 1)
             {
-                NodoRaiz.Valor = NodoRaiz.Izquierda.Valor;
-                NodoRaiz.Izquierda.Valor = AuxNodo.Valor;
-                BorraBalanceo(Delegado, NodoRaiz.Izquierda);
+                if (NodoRaiz.Derecha.Valor == null || Convert.ToInt32(Delegado.DynamicInvoke(NodoRaiz.Izquierda.Valor, NodoRaiz.Derecha.Valor)) == 1)
+                {
+                    NodoRaiz.Valor = NodoRaiz.Izquierda.Valor;
+                    NodoRaiz.Izquierda.Valor = AuxNodo.Valor;
+                    BorraBalanceo(Delegado, NodoRaiz.Izquierda);
+                }
             }
-            else if (NodoRaiz.Derecha.Valor != null && Convert.ToInt32(Delegado.DynamicInvoke(NodoRaiz.Derecha.Valor, NodoRaiz.Valor)) == 1 &&
-                Convert.ToInt32(Delegado.DynamicInvoke(NodoRaiz.Derecha.Valor, NodoRaiz.Izquierda.Valor)) == 1)
-            {
-                NodoRaiz.Valor = NodoRaiz.Derecha.Valor;
-                NodoRaiz.Derecha.Valor = AuxNodo.Valor;
-                BorraBalanceo(Delegado, NodoRaiz.Derecha);
-            }
+            else if (NodoRaiz.Derecha.Valor != null && Convert.ToInt32(Delegado.DynamicInvoke(NodoRaiz.Derecha.Valor, NodoRaiz.Valor)) == 1 )
+                if (NodoRaiz.Izquierda.Valor == null || Convert.ToInt32(Delegado.DynamicInvoke(NodoRaiz.Derecha.Valor, NodoRaiz.Izquierda.Valor)) == 1)
+                {
+                    NodoRaiz.Valor = NodoRaiz.Derecha.Valor;
+                    NodoRaiz.Derecha.Valor = AuxNodo.Valor;
+                    BorraBalanceo(Delegado, NodoRaiz.Derecha);
+                }
         }
 
         protected override void Borrar(Nodo<T> NodoRaiz, int Inicio)
