@@ -4,52 +4,63 @@
     ViewData["Title"] = "MostrarTablaHash";
 }
 
-<body>
-    <header class="PacientesSospechos">
-        <div class="textos">
-            <h1 class="titulo">Pacientes Antendidos Por en Camas</h1>
-            <h3 class="subtitulo">Tabla de Pacientes</h3>
-        </div>
-        <div class="sesgoabajo"></div>
-    </header>
-    <div class="container">
-        <hr />
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Id)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Estado)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DPI)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Cama item in ViewBag.Tabla)
-                {
+    <body>
+        <header class="PacientesSospechos">
+            <div class="textos">
+                <h1 class="titulo">Pacientes Antendidos Por en Camas</h1>
+                <h3 class="subtitulo">Tabla de Pacientes</h3>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
+        <div class="container">
+            <hr />
+            <table class="table table-striped">
+                <thead class="thead-dark">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Estado)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DPI)
-                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DPI)
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</body>
+                </thead>
+                <tbody>
+                    @foreach (Cama item in ViewBag.Tabla)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Estado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DPI)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <section class="contenedorlista">
+            <p>
+
+            </p>
+            <center>
+                <a class="btn btn-outline-light btn-block" asp-action="Index">Regresar</a>
+            </center>
+            <p>
+
+            </p>
+        </section>
+    </body>

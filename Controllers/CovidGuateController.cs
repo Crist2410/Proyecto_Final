@@ -138,30 +138,38 @@ namespace ProyectoFinal_EstDatos.Controllers
 
         public ActionResult RealizarBusqueda(string Buscar, string Texto)
         {
-            Paciente AuxPaciente = new Paciente();
-            if (Buscar == "N")
+            if (Texto.Trim() == " ")
             {
-                AuxPaciente.Nombre = Texto;
-                ViewBag.Pacientes = Covid19.AVLNombre.Filtrar(AuxPaciente.BuscarNombre, AuxPaciente);
-            }
-            else if (Buscar == "A")
-            {
-                AuxPaciente.Apellido = Texto;
-                ViewBag.Pacientes = Covid19.AVLApellido.Filtrar(AuxPaciente.BuscarApellido, AuxPaciente);
+                Paciente AuxPaciente = new Paciente();
+                if (Buscar == "N")
+                {
+                    AuxPaciente.Nombre = Texto;
+                    ViewBag.Pacientes = Covid19.AVLNombre.Filtrar(AuxPaciente.BuscarNombre, AuxPaciente);
+                }
+                else if (Buscar == "A")
+                {
+                    AuxPaciente.Apellido = Texto;
+                    ViewBag.Pacientes = Covid19.AVLApellido.Filtrar(AuxPaciente.BuscarApellido, AuxPaciente);
+                }
+                else
+                {
+                    try
+                    {
+                        AuxPaciente.DPI = Convert.ToInt64(Texto);
+                        ViewBag.Pacientes = Covid19.AVLPacientes.Get(AuxPaciente, AuxPaciente.BuscarDPI);
+                    }
+                    catch (Exception)
+                    {
+                        List<Paciente> ListaError = new List<Paciente>();
+                        ViewBag.Pacientes = ListaError;
+                        return View("BuscarPaciente");
+                    }
+                }
             }
             else
             {
-                try
-                {
-                    AuxPaciente.DPI = Convert.ToInt64(Texto);
-                    ViewBag.Pacientes = Covid19.AVLPacientes.Get(AuxPaciente, AuxPaciente.BuscarDPI);
-                }
-                catch (Exception)
-                {
-                    List<Paciente> ListaError = new List<Paciente>();
-                    ViewBag.Pacientes = ListaError;
-                    return View("BuscarPaciente");
-                }
+                List<Paciente> ListaError = new List<Paciente>();
+                ViewBag.Pacientes = ListaError;
             }
             return View("BuscarPaciente");
         }
@@ -180,6 +188,10 @@ namespace ProyectoFinal_EstDatos.Controllers
                 if (ListaCamas[i]== null || ListaCamas[i].PacienteCama == null)
                 {
                     ListaCamas[i] = new Cama() { Id = (i + 1), Nombre = "Cama", DPI = "Vacia", Estado ="Disponible"};
+                }
+                else
+                {
+                    ListaCamas[i].Id++;
                 }
             ViewBag.Tabla = ListaCamas;
             return View();
