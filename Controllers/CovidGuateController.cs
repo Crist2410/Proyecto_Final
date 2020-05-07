@@ -60,9 +60,9 @@ namespace ProyectoFinal_EstDatos.Controllers
         }
         public ActionResult RealizarPrueba()
         {
-            //try
-            //{
-            Paciente AuxPaciente = new Paciente();
+            try
+            {
+                Paciente AuxPaciente = new Paciente();
             AuxPaciente = HospitalActual.Sospechosos.Delete(AuxPaciente.BuscarPrioridad);
             if (AuxPaciente.ExamenCovid19())
             {
@@ -96,11 +96,11 @@ namespace ProyectoFinal_EstDatos.Controllers
             }
             Covid19.EstadisticasGeneral.PruebasRealizadas++;
             return View(AuxPaciente);
-            //}
-            //catch (Exception)
-            //{
-            //    return View("Index");
-            //}
+            }
+            catch (Exception)
+            {
+                return View("Index");
+            }
 
         }
         public ActionResult BuscarPaciente()
