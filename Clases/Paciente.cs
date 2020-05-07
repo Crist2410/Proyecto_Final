@@ -36,13 +36,13 @@ namespace ProyectoFinal_EstDatos.Clases
             }
             Random NumRandom = new Random();
             int Parametro = NumRandom.Next(1, 100);
-            if (Descrip.Contains("viaje a europa"))
+            if (Descrip.Contains("viaje a europa") || Descrip.Contains("viajar a europa") || Descrip.Contains("viajo a europa"))
                 Probablidiad += 10;
-            if (Descrip.Contains("conocido contagiando"))
+            if (Descrip.Contains("conocido") && Descrip.Contains("contagiado"))
                 Probablidiad += 15;
-            if (Descrip.Contains("familiar contagiado"))
+            if (Descrip.Contains("familiar") && Descrip.Contains("contagiado"))
                 Probablidiad += 30;
-            if (Descrip.Contains("reunion social con sospechoso"))
+            if (Descrip.Contains("reunion social")&& Descrip.Contains("sospechoso"))
                 Probablidiad += 5;
             if (Parametro <= Probablidiad)
                 Prueba = true;
