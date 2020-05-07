@@ -261,16 +261,15 @@ namespace ProyectoFinal_EstDatos.Controllers
             try
             {
                 int Valor = Convert.ToInt32(Texto);
-                if (Buscar == "ID")
+                if (Buscar == "ID" && Valor != 0)
                 {
-                    if (Covid19.CamasPacientes.Buscar(Valor) == null)
-                    {
-                        Cama AuxCama = new Cama() { Id = (Valor), Nombre = "Cama Vacía", DPI = "---", Estado = "Disponible" };
-                        Cama[] ListaAux = new Cama[1] { AuxCama};
-                        ViewBag.Tabla = ListaAux;
-                    }
-                    else
-                        ViewBag.Tabla = Covid19.CamasPacientes.Buscar(Valor);
+                    Cama[] ListaAux = new Cama[1] ;
+                    Cama AuxCama = Covid19.CamasPacientes.Buscar(--Valor);
+                    if (AuxCama == null)
+                        AuxCama = new Cama() { Id = (Valor), Nombre = "Cama Vacía", DPI = "---", Estado = "Disponible" };
+                    ListaAux[0] = AuxCama;
+                    ListaAux[0].Id++;
+                    ViewBag.Tabla = ListaAux; 
                 }
                 else if (Valor <= 5 && Valor >= 1)
                 {
@@ -293,17 +292,24 @@ namespace ProyectoFinal_EstDatos.Controllers
             }
             catch (Exception)
             {
-                Cama[] ListaCamas = Covid19.CamasPacientes.Mostrar();
-                for (int i = 0; i < 50; i++)
-                    if (ListaCamas[i] == null || ListaCamas[i].PacienteCama == null)
-                    {
-                        ListaCamas[i] = new Cama() { Id = (i + 1), Nombre = "Cama Vacía", DPI = "---", Estado = "Disponible" };
-                    }
-                    else
-                    {
-                        ListaCamas[i].Id++;
-                    }
-                ViewBag.Tabla = ListaCamas;
+                if ()
+                {
+
+                }
+                else
+                {
+                    Cama[] ListaCamas = Covid19.CamasPacientes.Mostrar();
+                    for (int i = 0; i < 50; i++)
+                        if (ListaCamas[i] == null || ListaCamas[i].PacienteCama == null)
+                        {
+                            ListaCamas[i] = new Cama() { Id = (i + 1), Nombre = "Cama Vacía", DPI = "---", Estado = "Disponible" };
+                        }
+                        else
+                        {
+                            ListaCamas[i].Id++;
+                        }
+                    ViewBag.Tabla = ListaCamas;
+                }
             }
             return View("MostrarTablaHash");
         }
