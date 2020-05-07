@@ -260,9 +260,10 @@ namespace ProyectoFinal_EstDatos.Controllers
         { 
             try
             {
-                int Valor = Convert.ToInt32(Texto);
-                if (Buscar == "ID" && Valor != 0)
+                int Valor;
+                if (Buscar == "ID" && Texto.Trim() != "")
                 {
+                     Valor = Convert.ToInt32(Texto);
                     Cama[] ListaAux = new Cama[1] ;
                     Cama AuxCama = Covid19.CamasPacientes.Buscar(--Valor);
                     if (AuxCama == null)
@@ -271,10 +272,10 @@ namespace ProyectoFinal_EstDatos.Controllers
                     ListaAux[0].Id++;
                     ViewBag.Tabla = ListaAux; 
                 }
-                else if (Valor <= 5 && Valor >= 1)
+                else if (Buscar == "1" || Buscar == "2"|| Buscar == "3" || Buscar == "4" || Buscar == "5" )
                 {
                     int Pivote = 0;
-                    Valor = (Valor * 10) - 10;
+                    Valor = (Convert.ToInt32(Buscar) * 10) - 10;
                     Cama[] ListaCamas = new Cama[10];
                     for (int i = Valor; i < Valor + 10; i++)
                     {
@@ -292,12 +293,6 @@ namespace ProyectoFinal_EstDatos.Controllers
             }
             catch (Exception)
             {
-                if ()
-                {
-
-                }
-                else
-                {
                     Cama[] ListaCamas = Covid19.CamasPacientes.Mostrar();
                     for (int i = 0; i < 50; i++)
                         if (ListaCamas[i] == null || ListaCamas[i].PacienteCama == null)
@@ -309,7 +304,6 @@ namespace ProyectoFinal_EstDatos.Controllers
                             ListaCamas[i].Id++;
                         }
                     ViewBag.Tabla = ListaCamas;
-                }
             }
             return View("MostrarTablaHash");
         }
