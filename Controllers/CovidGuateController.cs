@@ -81,7 +81,7 @@ namespace ProyectoFinal_EstDatos.Controllers
                     {
                         HospitalActual.EsperaConfrimados.Add(AuxPaciente, AuxPaciente.BuscarPrioridad);
                         ViewBag.Descripcion = "PACIENTE POSITIVO PARA COVID-19";
-                        ViewBag.Descripcion2 = "Fue Trasladado a Lista de Espera Mienstras se Habilita una Cama";
+                        ViewBag.Descripcion2 = "fue trasladado a lista de espera mientras se habilita una cama";
                     }
                     Covid19.EstadisticasGeneral.Contagiados++;
                 }
@@ -133,12 +133,16 @@ namespace ProyectoFinal_EstDatos.Controllers
             Covid19.AVLNombre.Editar(AuxPaciente, AuxPaciente.BuscarNombre, AuxPaciente.BuscarDPI);
             Covid19.AVLApellido.Editar(AuxPaciente, AuxPaciente.BuscarApellido, AuxPaciente.BuscarDPI);
             Covid19.EstadisticasGeneral.Recuperados++;
+            Paciente EsperaPaciente = new Paciente();
+            EsperaPaciente = HospitalActual.EsperaConfrimados.Delete(EsperaPaciente.BuscarPrioridad);
+            Cama EsperaCama = HospitalActual.Añadir(EsperaPaciente);
+            Covid19.CamasPacientes.Añadir(EsperaCama, EsperaCama.Id);
             return View( AuxPaciente);
         }
 
         public ActionResult RealizarBusqueda(string Buscar, string Texto)
         {
-            if (Texto.Trim() == " ")
+            if (Texto == null)
             {
                 Paciente AuxPaciente = new Paciente();
                 if (Buscar == "N")
@@ -187,7 +191,7 @@ namespace ProyectoFinal_EstDatos.Controllers
             for (int i = 0; i < 50; i++)
                 if (ListaCamas[i]== null || ListaCamas[i].PacienteCama == null)
                 {
-                    ListaCamas[i] = new Cama() { Id = (i + 1), Nombre = "Cama", DPI = "Vacia", Estado ="Disponible"};
+                    ListaCamas[i] = new Cama() { Id = (i + 1), Nombre = "Cama Vacía", DPI = "---", Estado ="Disponible"};
                 }
                 else
                 {

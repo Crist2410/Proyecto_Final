@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Edad" class="control-label"></label>
-                            <input asp-for="Edad" class="form-control" min="0" max="99" required placeholder="Edad Del Paciente" />
+                            <input asp-for="Edad" class="form-control" min="0" max="150" required placeholder="Edad Del Paciente" />
                             <span asp-validation-for="Edad" class="text-danger"></span>
                         </div>
                         <div class="form-group">
@@ -70,12 +70,12 @@
                             <span asp-validation-for="Municipio" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Sintomas" class="control-label"></label>
-                            <input asp-for="Sintomas" class="form-control" required placeholder="Sintomas Presentados" />
+                            <label asp-for="Sintomas" class="control-label">Síntomas</label>
+                            <input asp-for="Sintomas" class="form-control" required placeholder="Síntomas Presentados" />
                             <span asp-validation-for="Sintomas" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Descripcion" class="control-label"></label>
+                            <label asp-for="Descripcion" class="control-label">Descripción</label>
                             <input asp-for="Descripcion" class="form-control" required placeholder="Actividades Recientes" />
                             <span asp-validation-for="Descripcion" class="text-danger"></span>
                         </div>
