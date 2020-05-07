@@ -14,6 +14,25 @@
         </header>
         <div class="container">
             <hr />
+            <nav class="navbar navbar-dark bg-dark">
+
+                <form class="form-inline my-2 my-lg-0" asp-controller="CovidGuate" asp-action="RealizarBusqueda">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-light active">
+                            <input type="radio" name="Buscar" id="Buscar" value="N" autocomplete="off" checked> Nombre
+                        </label>
+                        <label class="btn btn-outline-light">
+                            <input type="radio" name="Buscar" id="Buscar" value="A" autocomplete="off"> Apellido
+                        </label>
+                        <label class="btn btn-outline-light">
+                            <input type="radio" name="Buscar" id="Buscar" value="DPI" autocomplete="off"> DPI/CUI
+                        </label>
+                    </div>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Texto" style="position:absolute; left: 750px;">
+                    <button class="btn btn-outline-info my-2 my-sm-0" style="position:absolute; left: 1000px;" type="submit">Buscar</button>
+                </form>
+            </nav>
+            <hr />
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>

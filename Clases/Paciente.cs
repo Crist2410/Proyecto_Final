@@ -26,8 +26,14 @@ namespace ProyectoFinal_EstDatos.Clases
         #region Metodos
         public bool ExamenCovid19()
         {
+            
             int Probablidiad = 5;
             string Descrip = Descripcion.ToLower();
+            if (Descrip.Contains("confirmado"))
+            {
+                Prueba = true;
+                return Prueba;
+            }
             Random NumRandom = new Random();
             int Parametro = NumRandom.Next(1, 100);
             if (Descrip.Contains("viaje a europa"))

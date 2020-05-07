@@ -25,7 +25,7 @@ namespace ProyectoFinal_EstDatos.Controllers
         [HttpPost]
         public ActionResult GuardarPaciente(IFormCollection collection)
         {
-            Paciente AuxPaciente = new Paciente()
+            Paciente AuxPaciente = new Paciente()   
             {
                 Nombre = collection["Nombre"],
                 Apellido = collection["Apellido"],
