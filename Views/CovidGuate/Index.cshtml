@@ -2,20 +2,45 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="text-center">
-    <h1>Menu Principal</h1>
-    <h2>
-        Guetemala "Covid 19"
-    </h2>
-    <p>
-        Proyecto Final Estrutura de Datos
-    </p>
-
-</div>
-<hr />
-<hr />
-<hr />
-<a asp-action="IngresarPaciente" class="btn btn-dark btn-lg btn-block" role="button">Ingresar Pasiente</a>
-<hr />
-<a asp-action="Hospitales" class="btn btn-dark btn-lg btn-block" role="button" >Hospitales</a>
+    <body>
+        <header>
+            <div class="textos">
+                <h1 class="titulo">Menú Principal</h1>
+                <h3 class="subtitulo">Guatemala "Covid-19"</h3>
+                <h2> Proyecto Final Estructura de Datos </h2>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
+        <section class="cards contenedor">
+            <h2 style="text-align:center">Opciones</h2>
+            <div class="content-cards">
+                <article class="card">
+                    <img src="~/Imagenes/Paciente.jpg" alt="" width="310">
+                    <a asp-action="IngresarPaciente" class="btn btn-outline-dark btn-lg btn-block" role="button">Ingresar Paciente</a>
+                </article>
+                <article class="card">
+                    <img src="~/Imagenes/Hospital.jpg" alt="" width="300">
+                    <a asp-action="Hospitales" class="btn btn-outline-dark btn-lg btn-block" role="button">Hospitales</a>
+                </article>
+                <article class="card">
+                    <img src="~/Imagenes/Lupa.jpg" alt="" width="250">
+                    <a asp-action="BuscarPaciente" class="btn btn-outline-dark btn-lg btn-block" role="button">Buscar Pacientes</a>
+                </article>
+            </div>
+        </section>
+        <section class="cards contenedor">
+            <div class="content-cards">
+                <article class="card">
+                    <img src="~/Imagenes/Estadisticas.png" alt="" width="280">
+                    <a asp-action="MostrarEstadisticas" class="btn btn-outline-dark btn-lg btn-block" role="button">Mostrar Estadísticas</a>
+                </article>
+                <article class="card">
+                    <img src="~/Imagenes/Contagiados.jpg" alt="" width="280">
+                    <a asp-action="MostrarTablaHash" class="btn btn-outline-dark btn-lg btn-block" role="button">Pacientes Contagiados Atendidos</a>
+                </article>
+            </div>
+        </section>
+        <h2 class="titulo-final">Un Gusto Atenderte</h2>
+        <div class="sesgoabajo-unico"></div>
+    </body>
 

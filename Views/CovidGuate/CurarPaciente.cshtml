@@ -1,0 +1,84 @@
+﻿@model ProyectoFinal_EstDatos.Clases.Paciente
+
+@{
+    ViewData["Title"] = "CurarPaciente";
+}
+    <body>
+        <header class="IngresarPaciente">
+            <div class="textos">
+                <h1 class="titulo">Paciente Recuperado</h1>
+                <h3 class="subtitulo">¡Felicidades!</h3>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
+        <div class="container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Apellido)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Apellido)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Edad)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Edad)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DPI)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DPI)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Departamento)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Departamento)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Municipio)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Municipio)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sintomas)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sintomas)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Descripcion)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Estado)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Estado)
+                </dd>
+            </dl>
+            <div class="sesgoabajo-lista"></div>
+            <section class="contenedorlista">
+                <p>
+
+                </p>
+                <center>
+                    <a class="btn btn-outline-light btn-block" asp-action="MostrarHospital">Regresar</a>
+                </center>
+                <p>
+
+                </p>
+            </section>
+        </div>
+    </body>

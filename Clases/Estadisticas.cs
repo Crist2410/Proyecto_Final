@@ -7,9 +7,13 @@ namespace ProyectoFinal_EstDatos.Clases
 {
     public class Estadisticas
     {
+        #region Variables
         public int Contagiados { get; set; }
         public int Sospechosos { get; set; }
-        public int Positivos { get; set; }
         public int Recuperados { get; set; }
+        public int PruebasRealizadas { get; set; }
+        public string PorcentajePositivos { get; set; }
+        #endregion
+
     }
 }

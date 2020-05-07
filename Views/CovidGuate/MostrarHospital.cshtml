@@ -3,21 +3,52 @@
     ViewData["Title"] = "MostarHospital";
 }
 
-<div class="text-center">
-    <h1>Hospitale </h1>
-    <h2>
-        @ViewBag.NombreHospital
-    </h2>
-</div>
-<hr />
-<hr />
-<hr />
-<a asp-action="PacientesSospechosos" class="btn btn-outline-dark btn-lg btn-block" role="button">Pacientes Sospechosos</a>
-<hr />
-<a asp-action="Cola de Confirmados" class="btn btn-outline-danger btn-lg btn-block" role="button">Cola de Confirmados</a>
-<hr />
-<a asp-action="Camas del Hospital" class="btn btn-outline-info btn-lg btn-block" role="button">Camas del Hospital</a>
-<hr />
-<a asp-action="RealizarPrueba" class="btn btn-outline-warning btn-lg btn-block" role="button">Realizar Prueba a Sospechoso</a>
+    <body>
+        <header class="Hospitales">
+            <div class="textos">
+                <h1 class="titulo">Hospital</h1>
+                <h3 class="subtitulo">@ViewBag.NombreHospital</h3>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
 
-
+        <section class="cards contenedor">
+            <h2 style="text-align:center">Hospiales</h2>
+            <hr />
+            <div class="content-cards">
+                <article class="card">
+                    <center>
+                        <img src="~/Imagenes/Paciente Sospechoso.png" alt="" width="250">
+                    </center>
+                    <a asp-action="PacientesSospechosos" class="btn btn-outline-dark btn-lg btn-block" role="button">Pacientes Sospechosos</a>
+                </article>
+                <article class="card">
+                    <center>
+                        <img src="~/Imagenes/ContagiadosCola.jpg" alt="" width="270">
+                    </center>
+                    <a asp-action="ColaConfirmados" class="btn btn-outline-danger btn-lg btn-block" role="button">Cola de Pacientes Confirmados</a>
+                </article>
+                <article class="card">
+                    <center>
+                        <img src="~/Imagenes/Camas.jpg" alt="" width="270">
+                    </center>
+                    <a asp-action="CamasHospital" class="btn btn-outline-info btn-lg btn-block" role="button">Camas del Hospital</a>
+                </article>
+            </div>
+            <hr />
+            <div class="content-cards">
+                <article class="card">
+                    <center>
+                        <img src="~/Imagenes/RealizarPrueba.jpg" alt="" width="220">
+                    </center>
+                    <a asp-action="RealizarPrueba" class="btn btn-outline-warning btn-lg btn-block" role="button">Realizar Prueba a Sospechoso</a>
+                </article>
+                <article class="card">
+                    <img src="~/Imagenes/Back.png" alt="" width="250">
+                    <a class="btn btn-outline-info btn-lg btn-block" asp-action="Hospitales">Regresar</a>
+                </article>
+            </div>
+        </section>
+        <h2 class="titulo-final"></h2>
+        <div class="sesgoabajo-hospitales"></div>
+    </body>

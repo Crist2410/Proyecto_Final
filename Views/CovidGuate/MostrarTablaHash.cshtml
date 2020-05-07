@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ProyectoFinal_EstDatos.Clases.Cama>
+@using ProyectoFinal_EstDatos.Clases;
+@{
+    ViewData["Title"] = "MostrarTablaHash";
+}
+
+    <body>
+        <header class="PacientesSospechos">
+            <div class="textos">
+                <h1 class="titulo">Pacientes Antendidos Por Camas</h1>
+                <h3 class="subtitulo">Tabla de Pacientes</h3>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
+        <div class="container">
+            <hr />
+            <nav class="navbar navbar-dark bg-dark">
+
+                <form class="form-inline my-2 my-lg-0" asp-controller="CovidGuate" asp-action="BuscarHash">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-light active">
+                            <input type="radio" name="Buscar" id="Buscar" value="ID" autocomplete="off" checked> ID
+                        </label>
+                        <label class="btn btn-outline-light">
+                            <input type="radio" name="Buscar" id="Buscar" value="1" autocomplete="off"> Guatemala
+                        </label>
+                        <label class="btn btn-outline-light">
+                            <input type="radio" name="Buscar" id="Buscar" value="2" autocomplete="off"> Quetzaltenango
+                        </label>
+                        <label class="btn btn-outline-light">
+                            <input type="radio" name="Buscar" id="Buscar" value="3" autocomplete="off"> Zacapa
+                        </label>
+                        <label class="btn btn-outline-light">
+                            <input type="radio" name="Buscar" id="Buscar" value="4" autocomplete="off"> Escuintla 
+                        </label>
+                        <label class="btn btn-outline-light">
+                            <input type="radio" name="Buscar" id="Buscar" value="5" autocomplete="off"> Petén 
+                        </label>
+                    </div>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Texto" style="position:absolute; left: 750px;">
+                    <button class="btn btn-outline-info my-2 my-sm-0" style="position:absolute; left: 1000px;" type="submit">Buscar</button>
+                </form>
+            </nav>
+            <hr />
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DPI)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Cama item in ViewBag.Tabla)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Estado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DPI)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <section class="contenedorlista">
+            <p>
+
+            </p>
+            <center>
+                <a class="btn btn-outline-light btn-block" asp-action="Index">Regresar</a>
+            </center>
+            <p>
+
+            </p>
+        </section>
+    </body>

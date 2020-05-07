@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LibreriaGenerica.Estruturas;
+using GenericosLibreria.Estruturas;
 using ProyectoFinal_EstDatos.Clases;
 
 namespace ProyectoFinal_EstDatos.Models
@@ -14,10 +14,14 @@ namespace ProyectoFinal_EstDatos.Models
         public Hospital HPeten = new Hospital() { Nombre = "Hospital de Petén" };
         public Hospital HEscuintla = new Hospital() { Nombre = "Hospital de Escuintla" };
         public Hospital HZacapa = new Hospital() { Nombre = "Hospital de Zacapa" };
+        public TablaHash<Cama> CamasPacientes = new TablaHash<Cama>();
         public Estadisticas EstadisticasGeneral = new Estadisticas();
+        public ArbolAVL<Paciente> AVLPacientes = new ArbolAVL<Paciente>();
+        public AVLRepetidos<Paciente> AVLNombre = new AVLRepetidos<Paciente>();
+        public AVLRepetidos<Paciente> AVLApellido = new AVLRepetidos<Paciente>();
         #region Metodos
-       public Hospital AsignarHospital(Paciente AuxPaciente)
-       {
+        public Hospital AsignarHospital(Paciente AuxPaciente)
+        {
             Hospital HAux;
             int NumeroH = AuxPaciente.ObtenerHospital();
             if (NumeroH == 1)
@@ -46,8 +50,8 @@ namespace ProyectoFinal_EstDatos.Models
                 HAux = HPeten;
             }
             return HAux;
-       }
-
+        }
+       
         #endregion
     }
 }

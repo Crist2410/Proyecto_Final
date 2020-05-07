@@ -1,0 +1,54 @@
+﻿@model ProyectoFinal_EstDatos.Clases.Estadisticas
+
+@{
+    ViewData["Title"] = "MostrarEstadisticas";
+}
+    <body>
+
+        <header class="PacientesSospechos">
+            <div class="textos">
+                <h1 class="titulo">Estadisticas de Covid-19 en Guatemala</h1>
+                <h3 class="subtitulo">Estadisticas</h3>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
+        <div class="container">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Contagiados)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Contagiados)
+                </dd>
+                <dt class="col-sm-2">
+                    Total Sopechosos
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sospechosos)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Recuperados)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Recuperados)
+                </dd>
+                <dt class="col-sm-2">
+                    Porcentaje positivos
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PorcentajePositivos)
+                </dd>
+            </dl>
+            <section class="contenedorlista">
+                <p>
+
+                </p>
+                <center>
+                    <a class="btn btn-outline-light btn-block" asp-action="Index">Regresar</a>
+                </center>
+                <p>
+
+                </p>
+            </section>
+        </div>
+    </body>

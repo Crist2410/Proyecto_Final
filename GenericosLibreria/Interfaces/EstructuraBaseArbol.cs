@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LibreriaGenerica.Estruturas;
+using GenericosLibreria.Estruturas;
 
-namespace LibreriaGenerica.Interfaces
+namespace GenericosLibreria.Interfaces
 {
     public abstract class EstruturaBaseArbol<T>
     {
