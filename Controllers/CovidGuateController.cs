@@ -266,24 +266,26 @@ namespace ProyectoFinal_EstDatos.Controllers
                     if (Covid19.CamasPacientes.Buscar(Valor) == null)
                     {
                         Cama AuxCama = new Cama() { Id = (Valor), Nombre = "Cama Vacía", DPI = "---", Estado = "Disponible" };
-                        ViewBag.Tabla = AuxCama;
+                        Cama[] ListaAux = new Cama[1] { AuxCama};
+                        ViewBag.Tabla = ListaAux;
                     }
                     else
                         ViewBag.Tabla = Covid19.CamasPacientes.Buscar(Valor);
                 }
                 else if (Valor <= 5 && Valor >= 1)
                 {
+                    int Pivote = 0;
                     Valor = (Valor * 10) - 10;
-                    Cama[] ListaCamas = Covid19.CamasPacientes.Mostrar();
+                    Cama[] ListaCamas = new Cama[10];
                     for (int i = Valor; i < Valor + 10; i++)
-                        if (ListaCamas[i] == null || ListaCamas[i].PacienteCama == null)
-                        {
-                            ListaCamas[i] = new Cama() { Id = (i + 1), Nombre = "Cama Vacía", DPI = "---", Estado = "Disponible" };
-                        }
+                    {
+                        if (Covid19.CamasPacientes.Buscar(Valor) == null)
+                            ListaCamas[Pivote] = new Cama() { Id = (i), Nombre = "Cama Vacía", DPI = "---", Estado = "Disponible" };
                         else
-                        {
-                            ListaCamas[i].Id++;
-                        }
+                            ListaCamas[Pivote] = Covid19.CamasPacientes.Buscar(Valor);
+                        ListaCamas[Pivote].Id++;
+                        Pivote++;
+                    }
                     ViewBag.Tabla = ListaCamas;
                 }
                 else
