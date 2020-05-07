@@ -16,16 +16,13 @@
             <hr />
             <nav class="navbar navbar-dark bg-dark">
 
-                <form class="form-inline my-2 my-lg-0" asp-controller="CovidGuate" asp-action="RealizarBusqueda">
+                <form class="form-inline my-2 my-lg-0" asp-controller="CovidGuate" asp-action="BuscarHash">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-outline-light active">
-                            <input type="radio" name="Buscar" id="Buscar" value="N" autocomplete="off" checked> Nombre
+                            <input type="radio" name="Buscar" id="Buscar" value="ID" autocomplete="off" checked> ID
                         </label>
                         <label class="btn btn-outline-light">
-                            <input type="radio" name="Buscar" id="Buscar" value="A" autocomplete="off"> Apellido
-                        </label>
-                        <label class="btn btn-outline-light">
-                            <input type="radio" name="Buscar" id="Buscar" value="DPI" autocomplete="off"> DPI/CUI
+                            <input type="radio" name="Buscar" id="Buscar" value="H" autocomplete="off"> Hospital
                         </label>
                     </div>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Texto" style="position:absolute; left: 750px;">
