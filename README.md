@@ -6,8 +6,7 @@ Este proyecto fue realizado en baso a los conocimientos adquiridos en el curso d
 
 ### Objetivos
 -Codificar soluciones especificas para el proyecto por medio de un enfoque orientado a objetos y programacion generica.
--Creacion de distintas estructuras de datos dentro del proyecto a elaborar.
-
+-Creacion de distintas estructuras de datos dentro del proyecto a elaborar.                                                                  
 -Aplicar las mejores practicas de programacion vistas en clase para la correcta elaboracion del proyecto.
 
 
